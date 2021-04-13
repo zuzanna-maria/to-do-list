@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from '@testing-library/react';
-import InputBar from './input-bar.js'
+import InputBar from '../input-bar/input-bar.js'
 
 test('Clicking the save button adds todo item to the list on the page', () => {
     const setInput = jest.fn((value) => {});

@@ -18,4 +18,11 @@ describe('Todo List', () => {
         cy.get("#save-button").click()
         cy.contains("Do the food shop")
     })
+
+    it('completes todo', () => {
+        cy.visit('/')
+        cy.get('.new-todo').type('write tests{enter}')
+        cy.contains('.todo-list li', 'write tests').find('.toggle').check()
+        cy.contains('.todo-list li', 'write tests').should('have.class', 'completed')
+      })
 })

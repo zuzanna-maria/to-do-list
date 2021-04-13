@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DisplayTodos from '../display-todos/display-todos.js'
 
 class Checkbox extends Component {
     constructor(props){
@@ -8,6 +9,7 @@ class Checkbox extends Component {
 
     handleCheck = () => {
         this.setState({ checked: this.state.checked });
+        <DisplayTodos complete="complete"/>
     }
 
     render() {

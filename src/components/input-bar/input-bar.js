@@ -7,34 +7,24 @@ class InputBar extends Component {
         this.state = {
             items: []
           };
-        this.saveTodo = this.saveTodo.bind(this);
     }
+
+    saveTodo = () => {
+      const element = document.getElementById('input-bar')
+      const newTodos = this.state.items
+      newTodos.push(element.value)
+      this.setState({items: newTodos})
+    } 
 
     render() {
-        return (<div><form id="todo-input" onSubmit={this.saveTodo}>
-            <input type="text" placeholder="Todo's..." id="input-bar" ref={(a) => this.input = a} />
-            <button type="submit" id="save-button">Save</button>
-        </form> 
-        <DisplayTodos items={this.state.items}/>
+        return (
+        <div>
+            <input type="text" placeholder="Todo's..." id="input-bar" />
+            <button id="save-button" onClick={this.saveTodo}>Save</button>
+            {this.state.items.map((todo, index) => {
+              return <DisplayTodos id={`todo-${index}-checkbox`} key={index} text={todo}/>
+            })}
         </div>)
-    }
-
-    saveTodo(event) {
-        let newItem = {
-            text: this.input.value,
-            key: Date.now()
-          };
-        
-        this.setState((prevState) => {
-            return { 
-              items: prevState.items.concat(newItem) 
-            };
-          });
-         
-        this.input.value = "";
-
-        console.log(this.state.items);
-        event.preventDefault();
     }
 }
 

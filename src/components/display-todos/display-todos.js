@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
-import Checkbox from '../checkbox/checkbox.js'
+// import Checkbox from '../checkbox/checkbox.js'
 
 class DisplayTodos extends Component {
-    constructor(props){
+  constructor(props){
         super(props);
-        this.state = { checked: false };
+        this.state = { 
+            checked: false, 
+            textDecoration: '',
+        };
     }
 
-    handleCheck = () => {
-        this.setState({ checked: this.state.checked });
-    }
-
-    createTasks(item) {
-        return <li key={item.key}> <Checkbox checked={this.state.checked} onClick={() => this.handleClick()}/> {item.text} </li>
+    handleClick = () => {
+        if (this.state.checked === false) {
+            this.setState({checked: true, textDecoration: "line-through"})
+        } else if (this.state.checked === true){
+            this.setState({checked: false, textDecoration: ""})
+        }
     }
 
     render(){
-        const todoItems = this.props.items;
-        const listOfItems = todoItems.map(this.createTasks);
-
         return (
-            <ul>{listOfItems}</ul>
+            <div>
+                <input type="checkbox" onClick={this.handleClick}></input>
+                <span style={{textDecoration: this.state.textDecoration}}> {this.props.text} </span>
+            </div>
         )
     }
 }
 
 export default DisplayTodos;
+

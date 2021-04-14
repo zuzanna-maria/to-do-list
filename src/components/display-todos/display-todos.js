@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 class DisplayTodos extends Component {
   constructor(props){
         super(props);
-        this.state = { 
-            checked: false, 
+        this.state = {
+            checked: false,
             textDecoration: '',
         };
     }
@@ -18,15 +18,16 @@ class DisplayTodos extends Component {
         }
     }
 
+
+
     render(){
         return (
             <div>
-                <input type="checkbox" onClick={this.handleClick}></input>
-                <span style={{textDecoration: this.state.textDecoration}}> {this.props.text} </span>
+                <input type="checkbox" id={`todo-${this.props.id}-checkbox`} onClick={this.handleClick}></input>
+                <span id={`todo-${this.props.id}-text`} style={{textDecoration: this.state.textDecoration}}> {this.props.text} </span>
             </div>
         )
     }
 }
 
 export default DisplayTodos;
-

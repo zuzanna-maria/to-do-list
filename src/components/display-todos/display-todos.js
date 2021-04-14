@@ -7,25 +7,35 @@ class DisplayTodos extends Component {
       super(props);
       this.state = { checked: false };
       this.createCheckbox = this.createCheckbox.bind(this)
+      this.textDecoration = '';
   }
 
   handleCheck = () => {
-      this.setState({ checked: this.state.checked });
+    if (this.state.checked === false) {
+      this.setState({checked: true})
+      this.textDecoration = "line-through"
+      console.log(this.textDecoration)
+    } else if (this.state.checked === true){
+      this.setState({checked: false})
+      this.textDecoration = ""
+      console.log("unchecked")
+    }
   }
 
 
 
-  createCheckbox() {
+  createCheckbox(){
     return (
-      //<div>
-        <input type="checkbox" onChange={this.handleCheck} defaultChecked={this.state.checked}/>
-      //</div>
+
+        <input type="checkbox" onChange={this.handleCheck} />
+
     )
   }
 
-  createTasks(item) {
+  createTasks = (item) => {
+        let checkbox = <input type="checkbox" onChange={this.handleCheck} defaultChecked={this.state.checked}/>
 
-        return <li key={item.key} style={{display: "inline", textDecoration: "line-through"}}> {this.createCheckbox} {item.text}</li>
+        return <li key={item.key} style={{display: "inline", textDecorationLine: this.textDecoration}}> {checkbox} {item.text}</li>
     }
 
 
